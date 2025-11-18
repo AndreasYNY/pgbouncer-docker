@@ -1,0 +1,34 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: /pgdata
+    volumes:
+      - ./pgdata:/pgdata
+    networks:
+      - pg-network
+    restart: unless-stopped
+
+  pgbouncer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 6432:6432
+    volumes:
+      - ./example.ini:/pgbouncer/pgbouncer.ini
+    # please provide your own pgbouncer.ini on your own :D
+    entrypoint: ["/bin/sh", "-c", 'echo \"${POSTGRES_USER}\" \"${POSTGRES_PASSWORD}\" > /pgbouncer/userlist.txt && /pgbouncer/bin/pgbouncer -u nobody /pgbouncer/pgbouncer.ini']
+    depends_on:
+      - postgres
+    networks:
+      - pg-network
+    restart: unless-stopped
+
+networks:
+  pg-network:
+    external: false
+
+
