@@ -1,6 +1,8 @@
 # [pgbouncer-docker](https://github.com/hyperized/pgbouncer-docker)
 A small Alpine based pgbouncer Docker image
 
+I changed nothing in this fork aside from building it for arm, check it out on [dockerhub](https://hub.docker.com/repository/docker/andreasyny/pg-bouncer/)
+
 ## To pull container
 
 ```docker pull hyperized/pgbouncer```
@@ -53,6 +55,8 @@ pgbouncer=# SHOW STATS;
 
 ## Reference
 
-Docker hub: https://hub.docker.com/r/hyperized/pgbouncer
+Arm Dockerhub: https://hub.docker.com/repository/docker/andreasyny/pg-bouncer/
 
-Github: https://github.com/hyperized/pgbouncer-docker
+Original Docker hub: https://hub.docker.com/r/hyperized/pgbouncer
+
+Original Github: https://github.com/hyperized/pgbouncer-docker
